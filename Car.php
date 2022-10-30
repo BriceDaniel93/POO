@@ -1,79 +1,46 @@
-<?php 
+<?php
 
+require_once 'Vehicle.php';
 
-class Car{
-    public int $nbWheels;
-    private int $currentSpeed;
-    private string $Color;
-    private int $nbSeats;
+class Car extends Vehicle
+{
+
+    public const ALLOWED_ENERGIES = [
+        'fuel',
+        'electric',
+    ];
+
     private string $energy;
-    public int $enrgyLevel;
 
+    private int $energyLevel;
 
-
-public function __construct(string $color)
-{
-    $this->color = $color;
-}
-
-public function __construct(int $nbSeats)
-{
-    $this->nbSeats = $nbSeats;
-}
-
-
-
-public function __construct(string $energy)
-{
-    $this->energy = $energy;
-}
-
-public function __construct(int $currentSpeed)
-{
-    $this->currentSpeed = $currentSpeed;
-}
-
-}
-
-public function getColor(): string
-{
-    return $this->Color;
-}
-public function setColor(string $Color): void
-{
-    $this->Color = $Color;
-}
-
-public function getnbSeats(int $nbSeats): int
-{
-    return $this->nbSeats;
-}
-public function setnbSeats(int $nbSeats): int
-{
-    $this->nbSeats = $nbSeats;
-}
-public function getenergy(string $energy): string
-{
-    return $this->energy;
-}
-public function setenergy(string $energy): string
-{
-    $this->energy = $energy;
-}
-
-public function getcurrentSpeed(int $currentSpeed): int
-{
-    return $this->currentSpeed;
-}
-
-public function setCurrentSpeed(int $currentSpeed): void
-{
-    if($currentSpeed > 0) {
-        $this->currentSpeed = $currentSpeed;
-        return 'go';
+    public function __construct(string $color, int $nbSeats, string $energy)
+    {
+        $this->color = $color;
+        $this->nbSeats = $nbSeats;
+        $this->energy = $energy;
     }
+
+    public function getEnergy(): string
+    {
+        return $this->energy;
+    }
+
+    public function setEnergy(string $energy): Car
+{
+    if (in_array($energy, self::ALLOWED_ENERGIES)) {
+        $this->energy = $energy;
+    }
+    return $this;
 }
+    public function getEnergyLevel(): int
+    {
+        return $this->energyLevel;
+    }
 
-
-
-
+   public function setEnergylevel(): int 
+   {
+        $this->Energylevel = $energyLevel;
+       
+   }
+}
